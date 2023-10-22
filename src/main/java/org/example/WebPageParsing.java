@@ -1,6 +1,5 @@
 package org.example;
 
-import lombok.Getter;
 import org.example.core.Line;
 import org.example.core.Station;
 import org.jsoup.Jsoup;
@@ -14,16 +13,13 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@Getter
 public class WebPageParsing {
-    private static final List<Line> lines = new ArrayList<>();
-    private static final Map<String, List<Station>> stationsMap = new LinkedHashMap<>();
-
-    protected static Document webPageConnect(String url) throws IOException {
+    public static Document webPageConnect(String url) throws IOException {
         return Jsoup.connect(url).maxBodySize(0).get();
     }
 
-    protected static List<Line> createLines(Document source) {
+    public static List<Line> createLines(Document source) {
+        List<Line> lines = new ArrayList<>();
         Elements linesInfo = source.select("span.js-metro-line");
         for (Element line : linesInfo) {
             String number = line.attr("data-line");
@@ -33,7 +29,8 @@ public class WebPageParsing {
         return lines;
     }
 
-    protected static Map<String, List<Station>> createStations(Document source) {
+    public static Map<String, List<Station>> createStations(Document source, List<Line> lines) {
+        Map<String, List<Station>> stationsMap = new LinkedHashMap<>();
         for (Line line : lines) {
             String lineNumb = line.getNumber();
             Elements elements = source.select("[data-line=\"" + lineNumb + "\"]").select("span.name");
