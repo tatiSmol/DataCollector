@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.core.Line;
 import org.example.core.Station;
+import org.example.core.StationDepth;
 import org.jsoup.nodes.Document;
 
 import java.io.File;
@@ -25,5 +26,10 @@ public class Main {
         File folder = new File("data/stations-data");
         FilesInFoldersSearch.searchFilesInFolder(folder);
         System.out.println(FilesInFoldersSearch.getAllValidFiles());
+
+        System.out.println("-------------------");
+
+        List<StationDepth> stationDepths = JSONFilesParsing.parseJsonFile(FilesInFoldersSearch.getJsonFiles().get(0));
+        stationDepths.forEach(System.out::println);
     }
 }
