@@ -30,11 +30,11 @@ public class FilesInFoldersSearch {
     }
 
     private static void addFileIfValid(File file) {
-        String fileName = file.getName();
-        if (fileName.endsWith(".json")) {
-            jsonFiles.add(fileName);
-        } else if (fileName.endsWith(".csv")) {
-            csvFiles.add(fileName);
+        String filePath = file.getPath();
+        if (filePath.endsWith(".json")) {
+            jsonFiles.add(filePath);
+        } else if (filePath.endsWith(".csv")) {
+            csvFiles.add(filePath);
         }
     }
 
