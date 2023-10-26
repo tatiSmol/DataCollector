@@ -31,5 +31,9 @@ public class Main {
 
         List<StationDepth> stationDepths = JSONFilesParsing.parseJsonFile(FilesInFoldersSearch.getJsonFiles().get(0));
         stationDepths.forEach(System.out::println);
+
+        System.out.println("-------------------");
+
+        CSVFilesParsing.parseCSVFile(FilesInFoldersSearch.getCsvFiles().get(1)).forEach(System.out::println);
     }
 }
