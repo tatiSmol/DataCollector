@@ -13,11 +13,11 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) throws IOException {
         Document source = WebPageParsing.webPageConnect("https://skillbox-java.github.io/");
-        List<Line> linesInfo = WebPageParsing.createLines(source);
-        Map<String, List<Station>> stationsInfo = WebPageParsing.createStations(source, linesInfo);
+        List<Line> lineInfo = WebPageParsing.createLines(source);
+        Map<String, List<Station>> stationInfo = WebPageParsing.createStations(source, lineInfo);
 
-        for (Line line : linesInfo) {
-            List<Station> stations = stationsInfo.get(line.getNumber());
+        for (Line line : lineInfo) {
+            List<Station> stations = stationInfo.get(line.getNumber());
             System.out.println(line.getName() + ": " + stations);
         }
 
@@ -35,5 +35,9 @@ public class Main {
         System.out.println("-------------------");
 
         CSVFilesParsing.parseCSVFile(FilesInFoldersSearch.getCsvFiles().get(1)).forEach(System.out::println);
+
+        System.out.println("-------------------");
+
+        JSONFileCreation.createJSONMap(lineInfo, stationInfo);
     }
 }
