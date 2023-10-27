@@ -33,8 +33,15 @@ public class WebPageParsing {
         Map<String, List<Station>> stationsMap = new LinkedHashMap<>();
         for (Line line : lines) {
             String lineNumb = line.getNumber();
-            Elements elements = source.select("[data-line=\"" + lineNumb + "\"]").select("span.name");
-            List<Station> stations = elements.stream().map(stName -> new Station(stName.text(), lineNumb)).toList();
+            Elements elements = source.select("[data-line=\"" + lineNumb + "\"]").select("p.single-station");
+
+            List<Station> stations = new ArrayList<>();
+            for (Element stationInfo : elements) {
+                String name = stationInfo.select("span.name").text();
+                boolean hasConnection = !stationInfo.select("span.t-icon-metroln").isEmpty();
+                Station station = new Station(name, lineNumb, hasConnection);
+                stations.add(station);
+            }
             stationsMap.put(lineNumb, stations);
         }
         return stationsMap;

@@ -10,6 +10,7 @@ import lombok.Setter;
 public class Station {
     private String name;
     private String lineNumber;
+    private boolean hasConnection;
 
     @Override
     public String toString() {
