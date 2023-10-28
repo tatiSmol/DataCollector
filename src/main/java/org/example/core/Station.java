@@ -1,15 +1,21 @@
 package org.example.core;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class Station {
+    @NonNull
     private String name;
-    private String lineNumber;
+    @NonNull
+    private String line;
+    private String date;
+    private long depth;
+    @NonNull
     private boolean hasConnection;
 
     @Override
