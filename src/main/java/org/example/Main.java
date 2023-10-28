@@ -38,6 +38,10 @@ public class Main {
 
         System.out.println("-------------------");
 
-        JSONFileCreation.createJSONMap(lineInfo, stationInfo);
+        JSONFileCreation.createJSONMap();
+
+        System.out.println("-------------------");
+
+        JSONFileCreation.createJSONStations();
     }
 }
